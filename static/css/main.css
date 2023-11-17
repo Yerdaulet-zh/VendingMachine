@@ -1,0 +1,212 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary: #31394e;
+}
+
+body {
+    min-height: 100vh;
+    font-family: 'Poppins', sans-serif;
+    background: #fefefe;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card {
+    position: relative;
+    width: 320px;
+    height: 600px;
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px
+               rgba(50, 50, 50, 0.2);
+}
+
+.bg-watch {
+    position: relative;
+    height: 320px;
+}
+
+.gradients {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    clip-path: circle(150px at 80% 20%);
+}
+
+.gradient {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    clip-path: circle(150px at 80% 20%);
+    z-index: -2;
+}
+
+.first {
+    z-index: 0;
+    animation: width 1s ease;
+}
+
+@keyframes width {
+    from {
+        width: 0%;
+    }
+    to {
+        width: 100%;
+    }
+}
+
+.gradient[color="blue"] {
+    background: #31394e;
+}
+
+.gradient[color="red"] {
+    background: #f84848;
+}
+
+.gradient[color="pink"] {
+    background: #f4d5cb;
+}
+
+.gradient[color="white"] {
+    background: #e9e5e4;
+}
+
+.gradient[color="black"] {
+    background: #444;
+}
+
+.watch {
+    position: absolute;
+    top: 200px;
+    left: -80px;
+    font-size: 8rem;
+    text-transform: uppercase;
+    opacity: 0.1;
+    color: #000;
+    transform: rotate(-70deg);
+}
+
+.share {
+    position: absolute;
+    text-decoration: none;
+    width: 50px;
+    height: 50px;
+    top: 15px;
+    right: 15px;
+    background: #fff;
+    color: var(--primary);
+    border-radius: 50%;
+    text-align: center;
+    font-size: 1.3rem;
+    line-height: 50px;
+    transition: .5s;
+    z-index: 2;
+}
+
+.share:hover {
+    transform: scale(1.1);
+}
+
+.watch-img {
+    position: absolute;
+    max-width: 100%;
+    width: 250px;
+    right: 50px;
+    bottom: 0;
+    opacity: 0;
+    z-index: 2;
+}
+
+.watch-img.show {
+    opacity: 1;
+}
+
+.info {
+    position: relative;
+    padding: 35px 40px;
+}
+
+.watch-name {
+    padding: 0 0 10px 0;
+}
+
+.watch-name .title {
+    margin-bottom: 10px;
+    font-size: 2rem;
+    line-height: 1.3;
+    color: #333;
+    text-transform: uppercase;
+}
+
+.watch-name .new {
+    padding: 3px 10px;
+    background: var(--primary);
+    color: #fff;
+    border-radius: 5px;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+h3 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #333;
+}
+
+.colors {
+    display: flex;
+    align-items: center;
+    padding: 8px 0;
+}
+
+.color {
+    width: 25px;
+    height: 25px;
+    margin: 0 10px;
+    border: 5px solid;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.color[color="blue"] {
+    background-color: #31394e;
+    border-color: #31394e;
+}
+
+.color[color="red"] {
+    background-color: #f84848;
+    border-color: #f84848;
+}
+
+.color[color="pink"] {
+    background-color: #f4d5cb;
+    border-color: #f4d5cb;
+}
+
+.color[color="white"] {
+    background-color: #e9e5e4;
+    border-color: #e9e5e4;
+}
+
+.color[color="black"] {
+    background-color: #444;
+    border-color: #444;
+}
+
+.color.active {
+    border-color: #000;
+}

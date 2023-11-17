@@ -1,0 +1,135 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Your HTML Page</title>
+
+    <!-- Include Bootstrap CSS from CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="static/css/input.css">
+</head>
+<body style="background-color:#eee">
+
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <ul class="flashes">
+                {% for category, message in messages %}
+                    <li class="{{ category }}">{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+
+
+    <section style="background-color: #eee;">
+        
+        <div class="container" style="margin-top: 10px;">
+            <!-- <div class="row"> -->
+                <div class="row row-cols-1 row-cols-md-3 g-4">
+                {% for item in items %} 
+
+                <div class="col mb-4 d-flex">
+                    <form method="POST" action="/process_form" class="flex-fill">
+                        <div class="card h-100">
+                            <img src="static/images/{{item.image}}"
+                            id="{{ item.name }}"
+                            class="card-img-top" alt="Laptop" />
+                            <div class="card-body">
+                            <h5 class="mb-0 text-center">{{item.name}}</h5>
+                            
+                            <input type="hidden" name="product_id" value="{{ item.id}}">
+                            <input type="hidden" name="product_price" value="{{ item.price}}">
+                            <input type="hidden" name="product_name" value="{{ item.name }}">
+
+                            <!-- description & charactereistics-->
+                            
+
+
+                            <!-- <ul class="list-group list-group-flush">
+                                <li class="list-group-item">An item</li>
+                                <li class="list-group-item">A second item</li>
+                                <li class="list-group-item">A third item</li>
+                            </ul> -->
+                            <ul class="list-group list-group-flush">
+                                <h6 style="padding-top: 15px;">Item characteristics</h6>
+                                {% if item.get('info') %}
+                                    {% for info_item in item.info %}
+                                        {% for key_value in info_item|dict_key_value %}
+                                            <li class="list-group-item">{{ key_value.key }}: {{ key_value.value }}</li>
+                                        {% endfor %}
+                                    {% endfor %}
+                                {% endif %}
+                            </ul>
+                            <hr class="my-0" />
+
+                            
+                            {% if item.get('sizes') %}
+
+                            <label for="selected_size" class="selected_size">Available in sizes: </label>
+
+                            {% for size in item.sizes %}
+                            
+                            <div class="form_radio_btn" style="padding-bottom: 5px;">
+                                <input type="radio" id="{{item.name}}{{size}}" name="sizeId" value="{{ size.size_id }}" required>
+                                <label for="{{item.name}}{{size}}">{{size.name}}</label>
+                                <input type="hidden" name="size_id" value="{{size.size_id}}">
+                            </div>
+                            {% endfor %}
+                            {% endif %}
+
+
+                            {% if item.get('colors') %}
+                            <label for="selected_size" class="selected_size">Available in colors: </label>
+                            {% for color in item.colors %}
+                            
+                            <div class="form_radio_btn" style="padding-bottom: 5px;">
+                                <input type="radio" id="{{color}}" name="colorId" value="{{ color.color_id }}" onclick="changeImage('{{ item.name }}', '{{ color.name }}')" required>
+                                <label for="{{color}}">{{color.name}}</label>
+                                <!-- <input type="hidden" name="color_id" value="{{color.color_id}}"> -->
+                            </div>
+
+                            {% endfor %}
+                            {% endif %}
+
+
+                            <!-- <hr class="my-0" /> -->
+                            <div class="d-flex justify-content-between" style="padding-top: 10px;">
+                                <h5>Price</h5>
+                                <h5 class="text-dark mb-0">{{item.price}}&#8376</h5>
+                            </div>  
+                            
+                            <div class="d-flex justify-content-between mb-2">
+                                {% if item.get('available') %}
+                                <p class="text-muted mb-0">Available: <span class="fw-bold">{{item.available}}</span></p>
+                                {% else %}
+                                <p class="text-muted mb-0"><span class="fw-bold"></span></p>
+                                {% endif %}
+                                
+                                
+                            </div>
+                            <div class="text-center"> <!-- Center the button -->
+                                <button type="submit" class="btn btn-primary">Buy Now</button>
+                            </div>
+                            <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
+                            </div>
+                        </div>      
+                    </form>
+                </div>
+                {% endfor %}
+            </div> 
+            <!-- </div></div> -->
+        </div>
+    </section>
+
+<script>
+    function changeImage(itemName, imageSrc) {
+        console.log(itemName, imageSrc)
+        document.getElementById(itemName).src = "static/images/PB_" + imageSrc + ".png";
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Your HTML Page</title>
+
+    <!-- Include Bootstrap CSS from CDN -->
+    <link rel="stylesheet" href="static/css/card.css">
+</head>
+<body>
+
+
+<div class="container">
+    <div class="card">
+        <div class="imgBx">
+        <img src="static/images/shoes.png">
+        </div>
+        <div class="contentBx">
+        <h2>Nike Shoes</h2>
+        <div class="size">
+            <h3>Size :</h3>
+            <span>7</span>
+            <span>8</span>
+            <span>9</span>
+            <span>10</span>
+        </div>
+        <div class="color">
+            <h3>Color :</h3>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <a href="#">Buy Now</a>
+        </div>
+    </div>
+</div>
+
+
+<div class="container">
+    <div class="card">
+        <div class="imgBx">
+            <img src="{{ url_for('static', filename='images/shoes.png') }}" alt="Nike Shoes">
+        </div>
+        <div class="contentBx">
+            <h2>Nike Shoes</h2>
+            <form method="post">
+                {{ form.csrf_token }}
+
+                <div class="size">
+                    <h3>Size :</h3>                    
+                    {% for size in sizes %}
+                    <fieldset id="sizes">
+                    <div class="form_radio_btn">
+                        <input id="{{ size }}" type="radio" name="sizes" value="{{ size }}" required>
+                        <label for="{{ size }}">{{ size }}</label>
+                    </div>
+                    </fieldset>
+                    <!-- <label class="size-option">
+
+                        <input type="radio" name="size" value="{{ size }}">
+                        {{ size }}
+                    </label> -->
+                    {% endfor %}
+                </div>
+
+                <div class="color">
+                    <h3>Color :</h3>
+                    {% for color in colors %}
+                    <fieldset id="colors">
+                    <div class="color_radio_btn">
+                        <input id="{{ color }}" type="radio" name="colors" value="{{ color }}" style="color: {{color}}" required>
+                    </div>
+                    </fieldset>
+                    {% endfor %}
+                </div>
+                <button type="submit">Buy Now</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+</body>
+
+</html>
