@@ -1,0 +1,77 @@
+[
+    {
+        "product_id": 1,
+        "positions": [
+            {
+                "size_id": 1,
+                "position": 20
+            },
+            {
+                "size_id": 2,
+                "position": 25
+            },
+            {
+                "size_id": 3,
+                "position": 30
+            },
+            {
+                "size_id": 4,
+                "position": 30
+            },
+            {
+                "size_id": 5,
+                "position": 30
+            }
+        ]
+    },
+    {
+        "product_id": 2,
+        "positions": [
+            {
+                "size_id": 1,
+                "position": 20
+            },
+            {
+                "size_id": 2,
+                "position": 25
+            },
+            {
+                "size_id": 3,
+                "position": 30
+            },
+            {
+                "size_id": 4,
+                "position": 30
+            },
+            {
+                "size_id": 5,
+                "position": 30
+            }
+        ]
+    },
+    {
+        "product_id": 3,
+        "position": 45
+    },
+    {
+        "product_id": 4,
+        "position": 50
+    },
+    {
+        "product_id": 5,
+        "position": 55
+    },
+    {
+        "product_id": 6,
+        "positions": [
+            {
+                "color_id": 1,
+                "position": 10
+            },
+            {
+                "color_id": 2,
+                "position": 15
+            }
+        ]
+    }
+]

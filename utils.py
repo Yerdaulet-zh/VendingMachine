@@ -1,10 +1,13 @@
+import json, config
+
+
+
 def dict_key_value(d):
     return [{"key": k, "value": v} for k, v in d.items()]
 
 
 def filter(products):
     filtered_products = []
-
     for product in products:
         if 'sizes' in product:
             filtered_sizes = [size for size in product['sizes'] if size['count'] > 0]
@@ -19,13 +22,12 @@ def filter(products):
         elif 'available' in product:
             if product['available']:
                 filtered_products.append(product)
-
     return filtered_products
 
 
-def find_product_by_ids(products, product_id, size_id=None, color_id=None):
+def update_save(products, product_id, size_id=None, color_id=None, save=True):
+    # Find and change the count of the specific item
     for item in products:
-
         if item['id'] == product_id:
             if ("sizes" in item.keys()):
                 for size in item['sizes']:
@@ -37,6 +39,11 @@ def find_product_by_ids(products, product_id, size_id=None, color_id=None):
                         size['count'] -= 1
             elif ("available" in item.keys()):
                 item['available'] -= 1
+    
+    # Save the updated dict
+    if save:
+        with open(config.products_path, 'w') as json_file:
+            json.dump(products, json_file,  indent=4)
 
 
 def record_sold_product(Product, db, product_id, name, size_id, color_id, price):
@@ -47,21 +54,17 @@ def record_sold_product(Product, db, product_id, name, size_id, color_id, price)
     db.session.commit()
 
 
-def funtion(cell_positions, product_id, size_id=None, color_id=None):
-    if size_id:
-        for item in cell_positions:
-            if item['product_id'] == product_id:
-                for position in item['positions']:
-                    if (position['size_id'] == size_id):
-                        return position['position']
-    elif color_id:
-        for item in cell_positions:
-            if item['product_id'] == product_id:
-                print(item)
-                for position in item['positions']:
-                    if (position['color_id'] == color_id):
-                        return position['position']
-    else:
-        for item in cell_positions:
-            if item['product_id'] == product_id:
+def get_position(cell_positions, product_id, size_id=None, color_id=None):
+    for item in cell_positions:
+        if item['product_id'] == product_id:
+            if size_id is None and color_id is None:
                 return item['position']
+                
+            else:
+                for position in item['positions']:
+                    if size_id:
+                        if (position['size_id'] == size_id):
+                            return position['position']
+                    if color_id:
+                        if (position['color_id'] == color_id):
+                            return position['position']

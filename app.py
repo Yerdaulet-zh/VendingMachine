@@ -2,8 +2,8 @@ from flask import Flask, render_template, request, session, redirect, url_for, f
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from datetime import datetime
-from utils import filter, dict_key_value, find_product_by_ids, record_sold_product
-from config import products
+from utils import filter, dict_key_value, update_save, record_sold_product, get_position
+import config
 
 
 app = Flask(__name__)
@@ -33,7 +33,7 @@ class Product(db.Model):
 
 @app.route("/")
 def index():
-    items = filter(products)
+    items = filter(config.products)
     # print(items)
     if len(items):
         return render_template("index.html", items=items)
@@ -55,10 +55,8 @@ def process_form():
     record_sold_product(Product, db, product_id=product_id, name=name, size_id=size_id, color_id=color_id, price=price)
     
     # Update products dict
-    find_product_by_ids(products, product_id, size_id=size_id, color_id=color_id)
-
-    # flash(f"The selected product is: {name} | Color id: {color_id} | product id {product_id}", 'info')
-    # return f"The selected product is: {username} | The selected size is: {size}"
+    update_save(config.products, product_id, size_id=size_id, color_id=color_id, save=False)
+    update_save(config.original, product_id, size_id=size_id, color_id=color_id, save=True)
     return redirect(url_for("index"))
 
 
