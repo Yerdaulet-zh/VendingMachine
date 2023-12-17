@@ -29,29 +29,29 @@
         "positions": [
             {
                 "size_id": 1,
-                "position": 3
+                "position": 4
             },
             {
                 "size_id": 2,
-                "position": 3
+                "position": 4
             },
             {
                 "size_id": 3,
-                "position": 3
+                "position": 4
             },
             {
                 "size_id": 4,
-                "position": 3
+                "position": 4
             },
             {
                 "size_id": 5,
-                "position": 3
+                "position": 4
             }
         ]
     },
     {
         "product_id": 3,
-        "position": 7
+        "position": 8
     },
     {
         "product_id": 4,
