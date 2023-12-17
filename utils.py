@@ -1,5 +1,5 @@
-import json, config
-
+import json, config, time
+# from RPi import GPIO
 
 
 def dict_key_value(d):
@@ -68,3 +68,36 @@ def get_position(cell_positions, product_id, size_id=None, color_id=None):
                     if color_id:
                         if (position['color_id'] == color_id):
                             return position['position']
+
+
+# Raspberry Pi
+def move_actuator(steps, dir_pin, pul_pin, delay, direction):
+    GPIO.output(dir_pin, direction)
+    for i in range(steps):
+        for _ in range(400):
+            GPIO.output(pul_pin, GPIO.HIGH)
+            time.sleep(delay)
+            GPIO.output(pul_pin, GPIO.LOW)
+            time.sleep(delay)
+
+
+
+def run_actuators(configs, xSteps, delay=0.0005):
+    GPIO.setmode(GPIO.BCM)
+    GPIO.setup(configs["xDir_pin"], GPIO.OUT)
+    GPIO.setup(configs["xPul_pin"], GPIO.OUT)
+    GPIO.setup(configs["yDir_pin"], GPIO.OUT)
+    GPIO.setup(configs["yPul_pin"], GPIO.OUT)
+    
+    # Run x-axis actuator forward
+    move_actuator(xSteps, configs["xDir_pin"], configs["xPul_pin"], delay, direction=1)
+    
+    # Run y-axis actuator forward and backward
+    move_actuator(configs["ySteps"], configs["yDir_pin"], configs["yPul_pin"], delay, direction=1)
+    move_actuator(configs["ySteps"], configs["yDir_pin"], configs["yPul_pin"], delay, direction=0)
+    
+    # run x-axis actuator backward
+    move_actuator(xSteps, configs["xDir_pin"], configs["xPul_pin"], delay, direction=0)
+    
+    GPIO.cleanup()
+

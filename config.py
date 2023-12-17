@@ -23,6 +23,13 @@ with open(cell_positions_path, 'r') as j_file:
     cell_positions = json.load(j_file)
 
 
+configs = {
+    "xPul_pin": 21,
+    "xDir_pin": 20,
+    "yPul_pin": 17,
+    "yDir_pin": 18,
+    "ySteps": 5
+}
 
 
 

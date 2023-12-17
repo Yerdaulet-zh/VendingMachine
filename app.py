@@ -1,8 +1,9 @@
+from turtle import position
 from flask import Flask, render_template, request, session, redirect, url_for, flash
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from datetime import datetime
-from utils import filter, dict_key_value, update_save, record_sold_product, get_position
+from utils import filter, dict_key_value, update_save, record_sold_product, get_position, run_actuators
 import config
 
 
@@ -50,6 +51,11 @@ def process_form():
     color_id = request.form.get('colorId')
     color_id = int(color_id) if color_id else color_id
     price = request.form.get('product_price')
+
+    # Give the product
+    position = get_position(config.cell_positions, product_id, size_id, color_id)
+    print(position)
+    # run_actuators(config.configs, position)
 
     # Add to the database
     record_sold_product(Product, db, product_id=product_id, name=name, size_id=size_id, color_id=color_id, price=price)

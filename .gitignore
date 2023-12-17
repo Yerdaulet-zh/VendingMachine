@@ -2,7 +2,10 @@
 __pycache__
 
 # Ignore virtual environment
-venv
+venv/
+env/
+instance/
+migrations/
 
 # Ignore log files
 *.log

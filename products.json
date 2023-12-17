@@ -18,7 +18,7 @@
             {
                 "size_id": 3,
                 "name": "L",
-                "count": 2
+                "count": 1
             },
             {
                 "size_id": 4,
@@ -28,7 +28,7 @@
             {
                 "size_id": 5,
                 "name": "XXL",
-                "count": 1
+                "count": 0
             }
         ],
         "info": [
@@ -55,7 +55,7 @@
             {
                 "size_id": 1,
                 "name": "S",
-                "count": 2
+                "count": 0
             },
             {
                 "size_id": 2,
@@ -70,12 +70,12 @@
             {
                 "size_id": 4,
                 "name": "XL",
-                "count": 2
+                "count": 1
             },
             {
                 "size_id": 5,
                 "name": "XXL",
-                "count": 1
+                "count": 0
             }
         ],
         "info": [
@@ -98,7 +98,7 @@
         "name": "Tote Bag",
         "image": "ToteBag.png",
         "price": 5000,
-        "available": 7,
+        "available": 6,
         "info": [
             {
                 "Material": "Polyester"
@@ -119,7 +119,7 @@
         "name": "Termo Bottle",
         "image": "termoBottle.png",
         "price": 5000,
-        "available": 7,
+        "available": 4,
         "info": [
             {
                 "Peculiarity": "Standard, Business, Portable, Temperature Display, With Cover"
@@ -143,7 +143,7 @@
         "name": "Umbrella",
         "image": "samurai.png",
         "price": 7000,
-        "available": 7,
+        "available": 3,
         "info": [
             {
                 "Item name": "Traditional compact golf samurai sword shaped handle katana umbrella"
